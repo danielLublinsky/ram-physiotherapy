@@ -11,7 +11,9 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
       targetElement.querySelector(".template-title-2").textContent = titles[1];
       targetElement.querySelector(".template-img").src = imgSrc;
 
-      const descriptionElement = targetElement.querySelector(".template-description");
+      const descriptionElement = targetElement.querySelector(
+        ".template-description"
+      );
       const readMoreBtn = targetElement.querySelector(".read-more-btn");
 
       // Character limit for the short version of the description
@@ -22,7 +24,8 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
 
       // If the description exceeds charLimit, show a shortened version and display "Read More" button
       if (description.length > charLimit) {
-        descriptionElement.textContent = description.substring(0, charLimit) + "...";
+        descriptionElement.textContent =
+          description.substring(0, charLimit) + "...";
         readMoreBtn.style.display = "inline-block";
 
         // Add click event for "Read More" button
@@ -32,7 +35,8 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
             descriptionElement.textContent = description;
             readMoreBtn.textContent = "קרא פחות";
           } else {
-            descriptionElement.textContent = description.substring(0, charLimit) + "...";
+            descriptionElement.textContent =
+              description.substring(0, charLimit) + "...";
             readMoreBtn.textContent = "קרא עוד";
           }
         });
@@ -43,7 +47,6 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
     });
 }
 
-
 (function ($) {
   "use strict";
 
@@ -53,8 +56,31 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
       .then((data) => {
         document.getElementById("footer-placeholder").innerHTML = data;
       });
-  });
+    function loadHeader() {
+      fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        setActiveNavLink();
+        });
+    }
 
+    function setActiveNavLink() {
+      const path = window.location.pathname;
+      const page = path.split("/").pop();
+      const currentPage = page === "" ? "index.html" : page;
+      const navLinks = document.querySelectorAll(
+        ".navbar-nav .nav-link[data-page]"
+      );
+      navLinks.forEach((link) => {
+        if (link.getAttribute("data-page") === currentPage) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    loadHeader();
+  });
   // Dropdown on mouse hover
   $(document).ready(function () {
     function toggleNavbarMethod() {
