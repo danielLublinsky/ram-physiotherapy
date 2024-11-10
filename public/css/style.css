@@ -13,7 +13,7 @@
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
-  --green: #25D366;
+  --green: #25d366;
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
@@ -21,7 +21,7 @@
   --gray-dark: #343a40;
   --primary: #0caeff;
   --secondary: #6ebbf6;
-  --success: #25D366;
+  --success: #25d366;
   --info: #4593f9;
   --warning: #f4e91a;
   --danger: #ff4242;
@@ -4358,7 +4358,18 @@ input[type="button"].btn-block {
   background: no-repeat center center;
   background-size: 100% 100%;
 }
+.whatsapp-button {
+  display: block;
+  width: 200px;
+  object-fit: contain;
+  margin: 0 auto; /* Center on small screens */
+}
 
+@media (min-width: 991.98px) {
+  .whatsapp-button {
+    margin: 0; /* Remove auto margins on larger screens */
+  }
+}
 @media (max-width: 575.98px) {
   .navbar-expand-sm > .container,
   .navbar-expand-sm > .container-fluid,
