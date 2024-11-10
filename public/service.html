@@ -36,24 +36,39 @@
     <div id="navbar-placeholder"></div>
 
     <!-- Header Start -->
-    <div
-      class="jumbotron jumbotron-fluid bg-jumbotron"
-      style="margin-bottom: 90px">
+    <div class="jumbotron jumbotron-fluid bg-jumbotron">
       <div class="container text-center py-5">
-        <h3 class="text-white display-3 mb-4">Services</h3>
+        <img
+          class="w-100 border-bottom border-primary pb-3"
+          src="img/ram_logo-removebg.png"
+          style="object-fit: contain; max-width: 400px; height: auto" />
+        <h3 class="text-white display-3"></h3>
         <div class="d-inline-flex align-items-center text-white">
-          <p class="m-0"><a class="text-white" href="">Home</a></p>
+          <p class="m-0">
+            <a class="text-white" href="index.html">נוירולוגי</a>
+          </p>
           <i class="far fa-circle px-3"></i>
-          <p class="m-0">Services</p>
+          <p class="m-0">
+            <a class="text-white" href="index.html">אורטופדי</a>
+          </p>
+          <i class="far fa-circle px-3"></i>
+          <p class="m-0">
+            <a class="text-white" href="index.html">פציעות ספורט</a>
+          </p>
+          <i class="far fa-circle px-3"></i>
+          <p class="m-0">
+            <a class="text-white" href="index.html">וסטיבולרי</a>
+          </p>
         </div>
       </div>
     </div>
+
     <!-- Header End -->
 
-
-    <div id="about-section2"></div>
-
-    <div id="about-section"></div>
+    <div id="service-neurology"></div>
+    <div id="service-orthopedic"></div>
+    <div id="service-sport"></div>
+    <div id="service-vestibular"></div>
 
     <div id="footer-placeholder"></div>
 
@@ -80,18 +95,52 @@
     <!-- Template Javascript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        loadServiceCategory("service-neurology", "טיפול נוירולוגי", [
+          {
+            title: "שבץ מוחי",
+            description: "טיפול לאחר שבץ מוחי...",
+          },
+          {
+            title: "פרקינסון",
+            description: "טיפול במחלות פרקינסון...",
+          },
+        ]);
+
         loadTextBlock(
-          "about-section",
-          ["Our Mission", "Welcome to Our Company"],
-          "Providing top services to you. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-          "img/about.jpg"
+          "service-orthopedic",
+          ["טיפול אורטופדי", "Another Welcome Message"],
+          "Delivering quality with dedication.",
+          "",
+          false,
+          "Delivering quality with dedication."
         );
-    
+
         loadTextBlock(
-          "about-section2",
-          ["Another Mission", "Another Welcome Message"],
+          "service-sport",
+          ["טיפול בפציעות ספורט", "Another Welcome Message"],
           "Delivering quality with dedication.",
           "img/about.jpg"
+        );
+
+        loadTextBlock(
+          "service-vestibular",
+          [
+            "טיפול וסטיבולרי לסחרחורות וחוסר שיווי משקל",
+            "סיבות נפוצות לבעיות שיווי משקל וסחרחורות",
+          ],
+          `
+          סיבות נפוצות לבעיות שיווי משקל וסחרחורות:
+1.	הפרעות וסטיבולריות: בעיות באוזן הפנימית או במערכת הוסטיבולרית.
+2.	שבץ מוחי: פגיעות במערכת העצבים המרכזית שמשפיעות על שיווי המשקל.
+
+          `,
+          "",
+          true,
+          `
+          סיבות נפוצות לבעיות שיווי משקל וסחרחורות:
+1.	הפרעות וסטיבולריות: בעיות באוזן הפנימית או במערכת הוסטיבולרית.
+
+          `
         );
       });
     </script>

@@ -10031,7 +10031,7 @@ h6,
 
 .bg-jumbotron {
   background: linear-gradient(rgba(33, 30, 28, 0.7), rgba(33, 40, 28, 0.7)),
-    url(../img/carousel-3.jpg), no-repeat center center;
+    url(../photos/photo6.jpg), no-repeat center center;
   background-size: cover;
 }
 
@@ -10043,6 +10043,38 @@ h6,
   }
 }
 
+.category-title span {
+  display: inline-block;
+}
+
+.category-title {
+  position: relative;
+}
+.sub-service {
+  text-align: right;
+  direction: rtl;
+}
+
+.sub-service-title {
+  font-size: 1.5rem;
+  color: #007bff; /* Adjust to your primary color */
+}
+
+.sub-service-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+body {
+  background: linear-gradient(
+    to bottom,
+    white 50%,
+    white 85%,
+    var(--light) 100%
+  );
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
 .team {
   width: 100%; /* Make sure the container takes full width */
   height: 300px; /* Set a fixed height for uniform size */
@@ -10059,7 +10091,6 @@ h6,
   object-fit: cover; /* Ensure the image maintains aspect ratio */
   object-position: center; /* Center the image within the container */
 }
-
 
 .testimonial-carousel .owl-dot {
   display: inline-block;
