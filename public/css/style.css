@@ -13,7 +13,7 @@
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
-  --green: #28a745;
+  --green: #25d366;
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
@@ -21,7 +21,7 @@
   --gray-dark: #343a40;
   --primary: #0caeff;
   --secondary: #6ebbf6;
-  --success: #37c651;
+  --success: #25d366;
   --info: #4593f9;
   --warning: #f4e91a;
   --danger: #ff4242;
@@ -4358,7 +4358,18 @@ input[type="button"].btn-block {
   background: no-repeat center center;
   background-size: 100% 100%;
 }
+.whatsapp-button {
+  display: block;
+  width: 200px;
+  object-fit: contain;
+  margin: 0 auto; /* Center on small screens */
+}
 
+@media (min-width: 991.98px) {
+  .whatsapp-button {
+    margin: 0; /* Remove auto margins on larger screens */
+  }
+}
 @media (max-width: 575.98px) {
   .navbar-expand-sm > .container,
   .navbar-expand-sm > .container-fluid,
@@ -9977,9 +9988,19 @@ h6,
   z-index: 1;
 }
 
-.service-item img {
+.service-item {
+  width: 100%;
+  height: 400px; /* Fixed height for all items */
+  overflow: hidden;
   position: relative;
-  margin-top: 40px;
+}
+
+.service-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image stretches while maintaining aspect ratio */
+  position: relative;
+
   transition: 0.5s;
 }
 
@@ -9993,22 +10014,23 @@ h6,
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  background: rgba(33, 30, 28, 0.5);
+  background: rgba(33, 30, 28, 0.5); /* Semi-transparent background */
   transition: 0.5s;
   z-index: 1;
+  color: white;
 }
 
 .service-item:hover img {
-  margin-top: 0px;
+  margin-top: 0px; /* Slide image up on hover */
 }
 
 .service-item:hover .service-text {
-  height: calc(100% + 40px);
+  height: calc(100% + 20px); /* Expand the overlay on hover */
 }
 
 .bg-appointment {
   background: linear-gradient(rgba(33, 30, 28, 0.7), rgba(33, 40, 28, 0.7)),
-    url(../img/carousel-1.jpg), no-repeat center center;
+    url(../photos/photo6.jpg), no-repeat center center;
   background-size: cover;
 }
 
@@ -10020,7 +10042,7 @@ h6,
 
 .bg-jumbotron {
   background: linear-gradient(rgba(33, 30, 28, 0.7), rgba(33, 40, 28, 0.7)),
-    url(../img/carousel-3.jpg), no-repeat center center;
+    url(../photos/photo6.jpg), no-repeat center center;
   background-size: cover;
 }
 
@@ -10032,46 +10054,53 @@ h6,
   }
 }
 
+.category-title span {
+  display: inline-block;
+}
+
+.category-title {
+  position: relative;
+}
+.sub-service {
+  text-align: right;
+  direction: rtl;
+}
+
+.sub-service-title {
+  font-size: 1.5rem;
+  color: #007bff; /* Adjust to your primary color */
+}
+
+.sub-service-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+body {
+  background: linear-gradient(
+    to bottom,
+    white 50%,
+    white 85%,
+    var(--light) 100%
+  );
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+.team {
+  width: 100%; /* Make sure the container takes full width */
+  height: 300px; /* Set a fixed height for uniform size */
+  position: relative;
+  overflow: hidden; /* Prevent overflow issues */
+  display: flex;
+  align-items: center; /* Center align image */
+  justify-content: center; /* Center align image */
+}
+
 .team img {
-  position: relative;
-  z-index: 1;
-}
-
-.team .team-text {
-  position: relative;
-  width: 100%;
-  height: 100px;
-  top: 0px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: 0.5s;
-}
-
-.team:hover .team-text {
-  top: 100px;
-}
-
-.team .team-social {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  top: -100px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.5s;
-}
-
-.team:hover .team-social {
-  top: 0;
-}
-
-.testimonial-carousel .owl-dots {
-  margin-top: 20px;
+  width: 100%; /* Stretch to fill the container width */
+  height: 100%; /* Stretch to fill the container height */
+  object-fit: cover; /* Ensure the image maintains aspect ratio */
+  object-position: center; /* Center the image within the container */
 }
 
 .testimonial-carousel .owl-dot {

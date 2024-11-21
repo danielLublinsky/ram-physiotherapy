@@ -1,4 +1,69 @@
-function loadTextBlock(targetId, titles, description, imgSrc) {
+function loadServiceCategory(targetId, categoryTitle, subServices) {
+  fetch("./components/service-category.html")
+    .then((response) => response.text())
+    .then((template) => {
+      // Inject template into the target element
+      const targetElement = document.getElementById(targetId);
+      targetElement.innerHTML = template;
+
+      // Set the category title inside the span
+      const categoryTitleSpan = targetElement.querySelector(
+        ".category-title span"
+      );
+      categoryTitleSpan.textContent = categoryTitle;
+
+      const subServicesContainer = targetElement.querySelector(".sub-services");
+
+      // For each sub-service, create and append its element
+      subServices.forEach((subService, index) => {
+        // Create sub-service container
+        const subServiceElement = document.createElement("div");
+        subServiceElement.classList.add("sub-service", "mb-4", "text-right");
+        subServiceElement.setAttribute("dir", "rtl");
+
+        // Create a container for the icon and title
+        const titleContainer = document.createElement("div");
+        titleContainer.classList.add("d-flex", "align-items-center");
+
+        // Add the icon
+        const iconElement = document.createElement("i");
+        iconElement.classList.add("far", "fa-circle", "px-2", "pb-2");
+        titleContainer.appendChild(iconElement);
+
+        // Add sub-service title
+        const subServiceTitle = document.createElement("h4");
+        subServiceTitle.classList.add("sub-service-title", "mb-2");
+        subServiceTitle.textContent = subService.title;
+        titleContainer.appendChild(subServiceTitle);
+
+        // Append the title container to the sub-service element
+        subServiceElement.appendChild(titleContainer);
+
+        // Add sub-service description
+        const subServiceDescription = document.createElement("p");
+        subServiceDescription.classList.add("sub-service-description");
+        subServiceDescription.textContent = subService.description;
+        subServiceElement.appendChild(subServiceDescription);
+
+        // Optionally add a separator between sub-services
+        if (index < subServices.length - 1) {
+          const separator = document.createElement("hr");
+          subServiceElement.appendChild(separator);
+        }
+
+        // Append sub-service element to container
+        subServicesContainer.appendChild(subServiceElement);
+      });
+    });
+}
+function loadTextBlock(
+  targetId,
+  titles,
+  description,
+  imgSrc,
+  showButton,
+  description2
+) {
   fetch("./components/text-block.html")
     .then((response) => response.text())
     .then((template) => {
@@ -9,7 +74,20 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
       // Populate template content dynamically within the specific target element
       targetElement.querySelector(".template-title-1").textContent = titles[0];
       targetElement.querySelector(".template-title-2").textContent = titles[1];
-      targetElement.querySelector(".template-img").src = imgSrc;
+      const imgElement = targetElement.querySelector(".template-img");
+      const description2Element = targetElement.querySelector(
+        ".template-description-2"
+      );
+
+      if (imgSrc) {
+        // Display image if imgSrc is provided
+        imgElement.src = imgSrc;
+        imgElement.style.display = "block";
+      } else if (description2) {
+        // Display description2 if imgSrc is not provided
+        description2Element.textContent = description2;
+        description2Element.style.display = "block";
+      }
 
       const descriptionElement = targetElement.querySelector(
         ".template-description"
@@ -23,7 +101,7 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
       descriptionElement.setAttribute("data-full-text", description);
 
       // If the description exceeds charLimit, show a shortened version and display "Read More" button
-      if (description.length > charLimit) {
+      if (description.length > charLimit && showButton) {
         descriptionElement.textContent =
           description.substring(0, charLimit) + "...";
         readMoreBtn.style.display = "inline-block";
@@ -58,10 +136,10 @@ function loadTextBlock(targetId, titles, description, imgSrc) {
       });
     function loadHeader() {
       fetch("./components/header.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById('navbar-placeholder').innerHTML = data;
-        setActiveNavLink();
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-placeholder").innerHTML = data;
+          setActiveNavLink();
         });
     }
 
