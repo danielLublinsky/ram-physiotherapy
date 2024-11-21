@@ -14,51 +14,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link
       href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
 
   <body>
+    <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>
 
+    <!-- About Section -->
     <div id="about-section"></div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        loadTextBlock(
-          "about-section",
-          ["אודות", "שלום אני רם אטיא"],
-          `בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-בלאבלבאלבאלבאלבאלבאלבאלאבללבאלבאלבאל
-
-          `,
-          "./photos/photo2.jpg"
-        );
-      });
-    </script>
 
     <!-- Team Start -->
     <div class="container-fluid bg-light">
@@ -90,15 +73,15 @@
         </div>
       </div>
     </div>
-
     <!-- Team End -->
 
+    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary back-to-top"
-      ><i class="fa fa-angle-double-up"></i
-    ></a>
+    <a href="#" class="btn btn-lg btn-primary back-to-top">
+      <i class="fa fa-angle-double-up"></i>
+    </a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -117,5 +100,16 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        loadMarkdownTextBlock(
+          "about-section",
+          "אודות", 
+          "about",
+          "./components/markdown-block.html"
+        );
+      });
+    </script>
   </body>
 </html>

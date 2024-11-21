@@ -124,6 +124,39 @@ function loadTextBlock(
       }
     });
 }
+function loadMarkdownTextBlock(targetId, markdownTitle, fileName, templatePath) {
+  const markdownPath = `./txt/${fileName}.md`; // Construct the file path based on title
+
+  // Fetch the template and markdown content
+  Promise.all([fetch(templatePath).then((res) => res.text()), fetch(markdownPath).then((res) => res.text())])
+    .then(([template, markdown]) => {
+      // Inject template into the target element
+      const targetElement = document.getElementById(targetId);
+      targetElement.innerHTML = template;
+
+      // Populate the template fields
+      const titleElement = targetElement.querySelector(".markdown-title");
+      const contentElement = targetElement.querySelector(".markdown-content");
+      const imgElement = targetElement.querySelector(".markdown-img");
+
+      // Set the title
+      titleElement.textContent = markdownTitle;
+
+      // Use Marked.js to render Markdown into HTML
+      const htmlContent =
+        typeof marked.parse === "function" ? marked.parse(markdown) : marked(markdown);
+      contentElement.innerHTML = htmlContent;
+
+      // Check for an image in the rendered content
+      const firstImage = contentElement.querySelector("img");
+      if (firstImage) {
+        imgElement.src = firstImage.src;
+        imgElement.style.display = "block";
+        firstImage.remove(); // Remove the image from the content area
+      }
+    })
+    .catch((error) => console.error(`Error loading Markdown or template: ${error}`));
+}
 
 (function ($) {
   "use strict";
