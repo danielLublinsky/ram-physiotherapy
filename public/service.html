@@ -105,43 +105,37 @@
             description: "טיפול במחלות פרקינסון...",
           },
         ]);
-
-        loadTextBlock(
-          "service-orthopedic",
-          ["טיפול אורטופדי", "Another Welcome Message"],
-          "Delivering quality with dedication.",
-          "",
-          false,
-          "Delivering quality with dedication."
-        );
-
-        loadTextBlock(
-          "service-sport",
-          ["טיפול בפציעות ספורט", "Another Welcome Message"],
-          "Delivering quality with dedication.",
-          "img/about.jpg"
-        );
-
-        loadTextBlock(
-          "service-vestibular",
-          [
-            "טיפול וסטיבולרי לסחרחורות וחוסר שיווי משקל",
-            "סיבות נפוצות לבעיות שיווי משקל וסחרחורות",
-          ],
-          `
-          סיבות נפוצות לבעיות שיווי משקל וסחרחורות:
-1.	הפרעות וסטיבולריות: בעיות באוזן הפנימית או במערכת הוסטיבולרית.
-2.	שבץ מוחי: פגיעות במערכת העצבים המרכזית שמשפיעות על שיווי המשקל.
-
-          `,
-          "",
-          true,
-          `
-          סיבות נפוצות לבעיות שיווי משקל וסחרחורות:
-1.	הפרעות וסטיבולריות: בעיות באוזן הפנימית או במערכת הוסטיבולרית.
-
-          `
-        );
+        loadServiceCategory("service-orthopedic", "טיפול אורטופדי", [
+          {
+            title: "שבץ מוחי",
+            description: "טיפול לאחר שבץ מוחי...",
+          },
+          {
+            title: "פרקינסון",
+            description: "טיפול במחלות פרקינסון...",
+          },
+        ]);
+        loadServiceCategory("service-sport", "טיפול בפציעות ספורט", [
+          {
+            title: "שבץ מוחי",
+            description: "טיפול לאחר שבץ מוחי...",
+          },
+          {
+            title: "פרקינסון",
+            description: "טיפול במחלות פרקינסון...",
+          },
+        ]);
+        loadServiceCategory("service-vestibular", "טיפול וסטיבולרי", [
+          {
+            title: "שבץ מוחי",
+            description: "טיפול לאחר שבץ מוחי...",
+          },
+          {
+            title: "פרקינסון",
+            description: "טיפול במחלות פרקינסון...",
+          },
+        ]);
+        
       });
     </script>
   </body>
