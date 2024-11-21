@@ -125,7 +125,7 @@ function loadTextBlock(
     });
 }
 function loadMarkdownTextBlock(targetId, markdownTitle, fileName, templatePath) {
-  const markdownPath = `./txt/${fileName}.md`; // Construct the file path based on title
+  const markdownPath = `./txt/${fileName}`; // Construct the file path based on title
 
   // Fetch the template and markdown content
   Promise.all([fetch(templatePath).then((res) => res.text()), fetch(markdownPath).then((res) => res.text())])
