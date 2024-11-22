@@ -64,7 +64,7 @@
     </div>
 
     <!-- Header End -->
-
+    <div id="preService"></div>
     <div id="service-neurology"></div>
     <div id="service-orthopedic"></div>
     <div id="service-sport"></div>
@@ -91,50 +91,32 @@
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/main.js"></script>
     <!-- Template Javascript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        loadServiceCategory("service-neurology", "טיפול נוירולוגי", [
-          {
-            title: "שבץ מוחי",
-            description: "טיפול לאחר שבץ מוחי...",
-          },
-          {
-            title: "פרקינסון",
-            description: "טיפול במחלות פרקינסון...",
-          },
-        ]);
-        loadServiceCategory("service-orthopedic", "טיפול אורטופדי", [
-          {
-            title: "שבץ מוחי",
-            description: "טיפול לאחר שבץ מוחי...",
-          },
-          {
-            title: "פרקינסון",
-            description: "טיפול במחלות פרקינסון...",
-          },
-        ]);
-        loadServiceCategory("service-sport", "טיפול בפציעות ספורט", [
-          {
-            title: "שבץ מוחי",
-            description: "טיפול לאחר שבץ מוחי...",
-          },
-          {
-            title: "פרקינסון",
-            description: "טיפול במחלות פרקינסון...",
-          },
-        ]);
-        loadServiceCategory("service-vestibular", "טיפול וסטיבולרי", [
-          {
-            title: "שבץ מוחי",
-            description: "טיפול לאחר שבץ מוחי...",
-          },
-          {
-            title: "פרקינסון",
-            description: "טיפול במחלות פרקינסון...",
-          },
-        ]);
+        loadMarkdownTextBlock(
+          "preService",
+          "רקע", 
+          "serviceDocs/serviceBackgroundLeft.md",
+          "serviceDocs/serviceBackgroundRight.md"
+        );
+       
+        loadMarkdownTextBlock(
+          "service-neurology",
+          "טיפול נירולוגי", 
+          "serviceDocs/orthopedic-ServiceLeft.md",
+          "serviceDocs/neurology-ServiceRight.md"
+        );
+      
+        loadMarkdownTextBlock(
+          "service-orthopedic",
+          "טיפול אורטופדי", 
+          "serviceDocs/orthopedic-ServiceLeft.md",
+          "serviceDocs/orthopedic-ServiceRight.md"
+        );
+       
         
       });
     </script>
