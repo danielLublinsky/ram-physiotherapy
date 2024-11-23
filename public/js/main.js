@@ -1,38 +1,3 @@
-
-function loadMarkdownImageBlock(targetId, markdownTitle, fileName) {
-  const markdownPath = `./txt/${fileName}`; // Construct the file path based on title
-
-  // Fetch the template and markdown content
-  Promise.all([fetch("./components/markdown-imageBlock.html").then((res) => res.text()), fetch(markdownPath).then((res) => res.text())])
-    .then(([template, markdown]) => {
-      // Inject template into the target element
-      const targetElement = document.getElementById(targetId);
-      targetElement.innerHTML = template;
-
-      // Populate the template fields
-      const titleElement = targetElement.querySelector(".markdown-title");
-      const contentElement = targetElement.querySelector(".markdown-content");
-      const imgElement = targetElement.querySelector(".markdown-img");
-
-      // Set the title
-      titleElement.textContent = markdownTitle;
-
-      // Use Marked.js to render Markdown into HTML
-      const htmlContent =
-        typeof marked.parse === "function" ? marked.parse(markdown) : marked(markdown);
-      contentElement.innerHTML = htmlContent;
-
-      // Check for an image in the rendered content
-      const firstImage = contentElement.querySelector("img");
-      if (firstImage) {
-        imgElement.src = firstImage.src;
-        imgElement.style.display = "block";
-        firstImage.remove(); // Remove the image from the content area
-      }
-    })
-    .catch((error) => console.error(`Error loading Markdown or template: ${error}`));
-}
-
 function loadMarkdownTextBlock(targetId, markdownTitle, fileNameLeft, filenameRight) {
   const markdownPathLeft = `./txt/${fileNameLeft}`; 
   const markdownPathRight = `./txt/${filenameRight}`;
@@ -46,7 +11,8 @@ function loadMarkdownTextBlock(targetId, markdownTitle, fileNameLeft, filenameRi
       const titleElement = targetElement.querySelector(".markdown-title");
       const contentElementLeft = targetElement.querySelector(".markdown-contentLeft");
       const contentElementRight = targetElement.querySelector(".markdown-contentRight");
-
+      const imgElementLeft = targetElement.querySelector(".markdown-imgLeft");
+      const imgElementRight = targetElement.querySelector(".markdown-imgRight");
       // Set the title
       titleElement.textContent = markdownTitle;
 
@@ -59,6 +25,18 @@ function loadMarkdownTextBlock(targetId, markdownTitle, fileNameLeft, filenameRi
         typeof marked.parse === "function" ? marked.parse(markdownRight) : marked(markdownRight);
         contentElementRight.innerHTML = htmlContentRight;
 
+        const LeftImage = contentElementLeft.querySelector("img");
+        const RightImage = contentElementRight.querySelector("img");
+        if (LeftImage) {
+          imgElementLeft.src = LeftImage.src;
+          imgElementLeft.style.display = "block";
+          LeftImage.remove(); 
+        }
+        if (RightImage) {
+          imgElementRight.src = RightImage.src;
+          imgElementRight.style.display = "block";
+          RightImage.remove(); 
+        }
     })
     .catch((error) => console.error(`Error loading Markdown or template: ${error}`));
 }
