@@ -34,20 +34,36 @@
 
   <body>
     <div id="navbar-placeholder"></div>
-    <div
-      class="jumbotron jumbotron-fluid bg-jumbotron"
-      style="margin-bottom: 90px">
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid bg-jumbotron">
       <div class="container text-center py-5">
         <img
           class="w-100 border-bottom border-primary pb-3"
-          src="img/ram_logo-TEXT.png"
+          src="img/ram_logo-removebg.png"
           style="object-fit: contain; max-width: 400px; height: auto" />
-        <h3 class="text-white display-3">החזרים</h3>
-        <div class="d-inline-flex align-items-center text-white"></div>
+        <h3 class="text-white display-3"></h3>
+        <div class="d-inline-flex align-items-center text-white">
+          <p class="m-0">
+            <a class="text-white" href="index.html">נוירולוגי</a>
+          </p>
+          <i class="far fa-circle px-3"></i>
+          <p class="m-0">
+            <a class="text-white" href="index.html">אורטופדי</a>
+          </p>
+          <i class="far fa-circle px-3"></i>
+          <p class="m-0">
+            <a class="text-white" href="index.html">פציעות ספורט</a>
+          </p>
+          <i class="far fa-circle px-3"></i>
+          <p class="m-0">
+            <a class="text-white" href="index.html">וסטיבולרי</a>
+          </p>
+        </div>
       </div>
     </div>
-    <!-- Header End -->
-    <div id="returns-section"></div>
+
+    <div id="service-vestibular"></div>
 
     <div id="footer-placeholder"></div>
 
@@ -70,16 +86,16 @@
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/main.js"></script>
+    <!-- Template Javascript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         loadMarkdownTextBlock(
-          "returns-section",
-          "טיפול נירולוגי",
-          "serviceDocs/orthopedic-ServiceLeft.md",
-          "serviceDocs/neurology-ServiceRight.md"
+          "service-vestibular",
+          "טיפול וסטיבולרי לסחרחורות וחוסר שיווי משקל",
+          "serviceDocs/vestibular-ServiceLeft.md",
+          "serviceDocs/vestibular-ServiceRight.md"
         );
       });
     </script>
