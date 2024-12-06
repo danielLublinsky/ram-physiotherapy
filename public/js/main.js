@@ -1,46 +1,87 @@
-function loadMarkdownTextBlock(targetId, markdownTitle, fileNameLeft, filenameRight) {
-  const markdownPathLeft = `./txt/${fileNameLeft}`; 
-  const markdownPathRight = `./txt/${filenameRight}`;
+function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
+  // Validate that inputs are URLs
+  const validateUrl = (url) => {
+    try {
+      new URL(url); // Throws an error if the URL is invalid
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
-  Promise.all([fetch("./components/markdown-textBlock.html").then((res) => res.text()), fetch(markdownPathLeft).then((res) => res.text()), fetch(markdownPathRight).then((res) => res.text())])
+  if (!validateUrl(urlLeft) || !validateUrl(urlRight)) {
+    console.error("Invalid URL(s) provided for Markdown files.");
+    return;
+  }
+
+  // Fetch the template and Markdown files concurrently
+  Promise.all([
+    fetch("./components/markdown-textBlock.html").then((res) => {
+      if (!res.ok) throw new Error("Failed to fetch template.");
+      return res.text();
+    }),
+    fetch(urlLeft).then((res) => {
+      if (!res.ok)
+        throw new Error(`Failed to fetch Markdown from URL: ${urlLeft}`);
+      return res.text();
+    }),
+    fetch(urlRight).then((res) => {
+      if (!res.ok)
+        throw new Error(`Failed to fetch Markdown from URL: ${urlRight}`);
+      return res.text();
+    }),
+  ])
     .then(([template, markdownLeft, markdownRight]) => {
       const targetElement = document.getElementById(targetId);
+      if (!targetElement) {
+        throw new Error(`Target element with ID "${targetId}" not found.`);
+      }
       targetElement.innerHTML = template;
 
       // Populate the template fields
       const titleElement = targetElement.querySelector(".markdown-title");
-      const contentElementLeft = targetElement.querySelector(".markdown-contentLeft");
-      const contentElementRight = targetElement.querySelector(".markdown-contentRight");
+      const contentElementLeft = targetElement.querySelector(
+        ".markdown-contentLeft"
+      );
+      const contentElementRight = targetElement.querySelector(
+        ".markdown-contentRight"
+      );
       const imgElementLeft = targetElement.querySelector(".markdown-imgLeft");
       const imgElementRight = targetElement.querySelector(".markdown-imgRight");
+
       // Set the title
-      titleElement.textContent = markdownTitle;
+      if (titleElement) titleElement.textContent = markdownTitle;
 
-      // Use Marked.js to render Markdown into HTML
-      const htmlContentLeft =
-        typeof marked.parse === "function" ? marked.parse(markdownLeft) : marked(markdownLeft);
-        contentElementLeft.innerHTML = htmlContentLeft;
+      // Render Markdown to HTML using Marked.js
+      const renderMarkdown = (markdown) =>
+        typeof marked.parse === "function"
+          ? marked.parse(markdown)
+          : marked(markdown);
 
-        const htmlContentRight =
-        typeof marked.parse === "function" ? marked.parse(markdownRight) : marked(markdownRight);
-        contentElementRight.innerHTML = htmlContentRight;
-
-        const LeftImage = contentElementLeft.querySelector("img");
-        const RightImage = contentElementRight.querySelector("img");
-        if (LeftImage) {
-          imgElementLeft.src = LeftImage.src;
+      if (contentElementLeft) {
+        contentElementLeft.innerHTML = renderMarkdown(markdownLeft);
+        const leftImage = contentElementLeft.querySelector("img");
+        if (leftImage && imgElementLeft) {
+          imgElementLeft.src = leftImage.src;
           imgElementLeft.style.display = "block";
-          LeftImage.remove(); 
+          leftImage.remove();
         }
-        if (RightImage) {
-          imgElementRight.src = RightImage.src;
-          imgElementRight.style.display = "block";
-          RightImage.remove(); 
-        }
-    })
-    .catch((error) => console.error(`Error loading Markdown or template: ${error}`));
-}
+      }
 
+      if (contentElementRight) {
+        contentElementRight.innerHTML = renderMarkdown(markdownRight);
+        const rightImage = contentElementRight.querySelector("img");
+        if (rightImage && imgElementRight) {
+          imgElementRight.src = rightImage.src;
+          imgElementRight.style.display = "block";
+          rightImage.remove();
+        }
+      }
+    })
+    .catch((error) =>
+      console.error(`Error loading Markdown or template: ${error.message}`)
+    );
+}
 
 (function ($) {
   "use strict";
