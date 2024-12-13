@@ -47,8 +47,18 @@
       </div>
     </div>
     <!-- Header End -->
-    <div id="returns-section"></div>
-
+    <div id="return-section"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        loadMarkdownTextBlock(
+          "return-section", // Target element ID
+          "החזרים",
+          "",
+          "https://raw.githubusercontent.com/danielLublinsky/ram-physiotherapy/refs/heads/main/txt/returnsRight.md"
+         
+        );
+      });
+    </script>
     <div id="footer-placeholder"></div>
 
     <!-- Back to Top -->
@@ -72,16 +82,8 @@
     <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        loadMarkdownTextBlock(
-          "returns-section",
-          "החזרים",
-          "",
-          "https://raw.githubusercontent.com/danielLublinsky/ram-physiotherapy/refs/heads/main/txt/returnsRight.md"
-        );
-      });
-    </script>
+
   </body>
 </html>
