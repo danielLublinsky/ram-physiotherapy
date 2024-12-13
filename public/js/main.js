@@ -1,6 +1,7 @@
 function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
-  // Validate that inputs are URLs
+  // Validate that inputs are URLs or empty strings
   const validateUrl = (url) => {
+    if (url === "") return false; // Treat empty string as invalid
     try {
       new URL(url); // Throws an error if the URL is invalid
       return true;
@@ -9,8 +10,11 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
     }
   };
 
-  if (!validateUrl(urlLeft) || !validateUrl(urlRight)) {
-    console.error("Invalid URL(s) provided for Markdown files.");
+  const leftUrlValid = validateUrl(urlLeft);
+  const rightUrlValid = validateUrl(urlRight);
+
+  if (!leftUrlValid && !rightUrlValid) {
+    console.error("Both URLs are invalid or empty. Nothing to display.");
     return;
   }
 
@@ -20,21 +24,25 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
       if (!res.ok) throw new Error("Failed to fetch template.");
       return res.text();
     }),
-    fetch(urlLeft).then((res) => {
-      if (!res.ok)
-        throw new Error(`Failed to fetch Markdown from URL: ${urlLeft}`);
-      return res.text();
-    }),
-    fetch(urlRight).then((res) => {
-      if (!res.ok)
-        throw new Error(`Failed to fetch Markdown from URL: ${urlRight}`);
-      return res.text();
-    }),
+    leftUrlValid
+      ? fetch(urlLeft).then((res) => {
+          if (!res.ok)
+            throw new Error(`Failed to fetch Markdown from URL: ${urlLeft}`);
+          return res.text();
+        })
+      : Promise.resolve(""),
+    rightUrlValid
+      ? fetch(urlRight).then((res) => {
+          if (!res.ok)
+            throw new Error(`Failed to fetch Markdown from URL: ${urlRight}`);
+          return res.text();
+        })
+      : Promise.resolve(""),
   ])
     .then(([template, markdownLeft, markdownRight]) => {
       const targetElement = document.getElementById(targetId);
       if (!targetElement) {
-        throw new Error(`Target element with ID "${targetId}" not found.`);
+        throw new Error(`Target element with ID \"${targetId}\" not found.`);
       }
       targetElement.innerHTML = template;
 
@@ -58,7 +66,8 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
           ? marked.parse(markdown)
           : marked(markdown);
 
-      if (contentElementLeft) {
+      // Handle left content
+      if (leftUrlValid && contentElementLeft) {
         contentElementLeft.innerHTML = renderMarkdown(markdownLeft);
         const leftImage = contentElementLeft.querySelector("img");
         if (leftImage && imgElementLeft) {
@@ -66,9 +75,12 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
           imgElementLeft.style.display = "block";
           leftImage.remove();
         }
+      } else if (contentElementLeft) {
+        contentElementLeft.parentElement.style.display = "none";
       }
 
-      if (contentElementRight) {
+      // Handle right content
+      if (rightUrlValid && contentElementRight) {
         contentElementRight.innerHTML = renderMarkdown(markdownRight);
         const rightImage = contentElementRight.querySelector("img");
         if (rightImage && imgElementRight) {
@@ -76,6 +88,17 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
           imgElementRight.style.display = "block";
           rightImage.remove();
         }
+      } else if (contentElementRight) {
+        contentElementRight.parentElement.style.display = "none";
+      }
+
+      // Center the single available content
+      if (!leftUrlValid && rightUrlValid) {
+        contentElementRight.parentElement.classList.add("mx-auto");
+        contentElementRight.parentElement.style.float = "none";
+      } else if (leftUrlValid && !rightUrlValid) {
+        contentElementLeft.parentElement.classList.add("mx-auto");
+        contentElementLeft.parentElement.style.float = "none";
       }
     })
     .catch((error) =>
