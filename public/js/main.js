@@ -66,39 +66,49 @@ function loadMarkdownTextBlock(targetId, markdownTitle, urlLeft, urlRight) {
           ? marked.parse(markdown)
           : marked(markdown);
 
-      // Handle left content
-      if (leftUrlValid && contentElementLeft) {
-        contentElementLeft.innerHTML = renderMarkdown(markdownLeft);
-        const leftImage = contentElementLeft.querySelector("img");
-        if (leftImage && imgElementLeft) {
-          imgElementLeft.src = leftImage.src;
-          imgElementLeft.style.display = "block";
-          leftImage.remove();
-        }
-      } else if (contentElementLeft) {
-        contentElementLeft.parentElement.style.display = "none";
-      }
+      const rowElement = targetElement.querySelector(".row");
 
-      // Handle right content
-      if (rightUrlValid && contentElementRight) {
-        contentElementRight.innerHTML = renderMarkdown(markdownRight);
-        const rightImage = contentElementRight.querySelector("img");
-        if (rightImage && imgElementRight) {
-          imgElementRight.src = rightImage.src;
-          imgElementRight.style.display = "block";
-          rightImage.remove();
+      // Handle single content centering or dual content
+      if (leftUrlValid && !rightUrlValid) {
+        if (contentElementLeft) {
+          contentElementLeft.innerHTML = renderMarkdown(markdownLeft);
+          contentElementLeft.parentElement.classList.remove("col-lg-6");
+          contentElementLeft.parentElement.classList.add("col-lg-12");
+          contentElementLeft.style.textAlign = "right";
         }
-      } else if (contentElementRight) {
-        contentElementRight.parentElement.style.display = "none";
-      }
-
-      // Center the single available content
-      if (!leftUrlValid && rightUrlValid) {
-        contentElementRight.parentElement.classList.add("mx-auto");
-        contentElementRight.parentElement.style.float = "none";
-      } else if (leftUrlValid && !rightUrlValid) {
-        contentElementLeft.parentElement.classList.add("mx-auto");
-        contentElementLeft.parentElement.style.float = "none";
+        if (contentElementRight) {
+          contentElementRight.parentElement.style.display = "none";
+        }
+      } else if (!leftUrlValid && rightUrlValid) {
+        if (contentElementRight) {
+          contentElementRight.innerHTML = renderMarkdown(markdownRight);
+          contentElementRight.parentElement.classList.remove("col-lg-6");
+          contentElementRight.parentElement.classList.add("col-lg-12");
+          contentElementRight.style.textAlign = "right";
+        }
+        if (contentElementLeft) {
+          contentElementLeft.parentElement.style.display = "none";
+        }
+      } else {
+        // Handle both contents if both URLs are valid
+        if (contentElementLeft) {
+          contentElementLeft.innerHTML = renderMarkdown(markdownLeft);
+          const leftImage = contentElementLeft.querySelector("img");
+          if (leftImage && imgElementLeft) {
+            imgElementLeft.src = leftImage.src;
+            imgElementLeft.style.display = "block";
+            leftImage.remove();
+          }
+        }
+        if (contentElementRight) {
+          contentElementRight.innerHTML = renderMarkdown(markdownRight);
+          const rightImage = contentElementRight.querySelector("img");
+          if (rightImage && imgElementRight) {
+            imgElementRight.src = rightImage.src;
+            imgElementRight.style.display = "block";
+            rightImage.remove();
+          }
+        }
       }
     })
     .catch((error) =>
