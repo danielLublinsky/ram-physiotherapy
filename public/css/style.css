@@ -248,6 +248,30 @@ button:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
+a:focus,
+button:focus {
+  outline: 3px solid black; /* Adds a clear black outline */
+  outline-offset: 2px; /* Adds space between the outline and the element */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Optional: Adds a subtle shadow for enhanced visibility */
+}
+
+.navbar-nav .nav-link:focus,
+.dropdown-item:focus,
+.whatsapp-button:focus {
+  outline: 3px solid black;
+  outline-offset: 2px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Add focus styles for form elements if needed */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid black;
+  outline-offset: 2px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
 input,
 button,
 select,
