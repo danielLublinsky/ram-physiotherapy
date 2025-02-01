@@ -21,7 +21,7 @@ window.args = {
 		toggler_icon_color: '#ffffff',
 	},
 	links : {
-		acc_policy: '',
+		acc_policy: 'https://ramphysiotherapy.com/acc-policy-ram.docx',
 		additional_link: 'https://vee.co.il/pricing/'
 	},
 	options : {
