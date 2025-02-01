@@ -15,7 +15,7 @@ window.args = {
 		slider_left_color:  '#b586ff',
 		slider_right_color:  '#177fab',
 		icon_vertical_position: 'top',
-		icon_offset_top: 100,
+		icon_offset_top: 150,
 		icon_offset_bottom: 0,
 		highlight_focus_color: '#177fab',
 		toggler_icon_color: '#ffffff',
