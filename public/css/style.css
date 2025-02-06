@@ -10100,13 +10100,6 @@ h6,
   line-height: 1.5;
 }
 body {
-  background: linear-gradient(
-    to bottom,
-    white 50%,
-    white 85%,
-    var(--light) 100%
-  );
-  background-attachment: fixed;
   margin: 0;
   padding: 0;
 }
