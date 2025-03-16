@@ -552,8 +552,8 @@
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/accessibility.js"></script>
-    <script src="js/firebase_config.js"></script>
-    <script>
+    <script type="module">
+      import { trackPageView } from "./js/firebase_config.js";
       trackPageView();
     </script>
   </body>

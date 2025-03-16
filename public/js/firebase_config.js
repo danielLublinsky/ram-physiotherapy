@@ -1,6 +1,9 @@
 // Import Firebase from the CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+import {
+  getAnalytics,
+  logEvent,
+} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,12 +20,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-function trackPageView() {
+export function trackPageView() {
   logEvent(analytics, "page_view", {
     page_path: window.location.pathname,
   });
 }
-
-window.trackPageView = trackPageView;
 
 trackPageView();
