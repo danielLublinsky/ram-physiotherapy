@@ -65,7 +65,10 @@
     <div id="footer-placeholder"></div>
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary back-to-top" aria-label="Back to top"
+    <a
+      href="#"
+      class="btn btn-lg btn-primary back-to-top"
+      aria-label="Back to top"
       ><i class="fa fa-angle-double-up"></i
     ></a>
 
@@ -87,6 +90,11 @@
     <!-- Template Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/main.js"></script>
+
     <script src="js/accessibility.js"></script>
+    <script type="module">
+      import { trackPageView } from "./firebase.js";
+      trackPageView();
+    </script>
   </body>
 </html>

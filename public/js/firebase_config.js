@@ -16,3 +16,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export function trackPageView() {
+  logEvent(analytics, "page_view", {
+    page_path: window.location.pathname,
+  });
+}
+
+trackPageView();
