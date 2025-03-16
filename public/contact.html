@@ -37,37 +37,41 @@
   <body>
     <div id="navbar-placeholder"></div>
     <!-- Header Start -->
-    <div
-    class="jumbotron jumbotron-fluid bg-jumbotron">
-    <div class="container text-center py-5">
-      <img
-        class="w-100 border-bottom border-primary pb-3"
-        src="img/ram_logo-removebg.png"
-        style="object-fit: contain; max-width: 400px; height: auto" />
-      <h3 class="text-white display-3">דרכי הגעה</h3>
-      <div class="d-inline-flex align-items-center text-white"></div>
+    <div class="jumbotron jumbotron-fluid bg-jumbotron">
+      <div class="container text-center py-5">
+        <img
+          class="w-100 border-bottom border-primary pb-3"
+          src="img/ram_logo-removebg.png"
+          style="object-fit: contain; max-width: 400px; height: auto" />
+        <h3 class="text-white display-3">דרכי הגעה</h3>
+        <div class="d-inline-flex align-items-center text-white"></div>
+      </div>
     </div>
-  </div>
     <!-- Header End -->
     <!-- Open Hours Start -->
-    <div class="container-fluid" style="background-image: url('photos/photo4.jpg'); background-size: cover; background-position: center;">
+    <div
+      class="container-fluid"
+      style="
+        background-image: url('photos/photo4.jpg');
+        background-size: cover;
+        background-position: center;
+      ">
       <div class="container">
         <div class="row">
           <!-- Image Column -->
           <div class="col-lg-6 d-none d-lg-block" style="min-height: 500px">
             <div class="position-relative h-100">
               <iframe
-              class="position-absolute w-100 h-100"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.7973714135953!2d34.69515457561018!3d31.779715878785123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502c1b63d5b56e5%3A0xd61156e6e7af47df!2z15LXkteV15bXldee!5e0!3m2!1siw!2sil!4v1729422850820!5m2!1siw!2sil"
-              width="600"
-              height="450"
-              style="border: 3"
-              referrerpolicy="no-referrer-when-downgrade"
-              frameborder="0"
-              aria-hidden="false"
-              tabindex="0"
-              title="Google Maps location of איריס 8 גן יבנה"></iframe>
-            
+                class="position-absolute w-100 h-100"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.7973714135953!2d34.69515457561018!3d31.779715878785123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502c1b63d5b56e5%3A0xd61156e6e7af47df!2z15LXkteV15bXldee!5e0!3m2!1siw!2sil!4v1729422850820!5m2!1siw!2sil"
+                width="600"
+                height="450"
+                style="border: 3"
+                referrerpolicy="no-referrer-when-downgrade"
+                frameborder="0"
+                aria-hidden="false"
+                tabindex="0"
+                title="Google Maps location of איריס 8 גן יבנה"></iframe>
             </div>
           </div>
 
@@ -79,13 +83,19 @@
               style="text-align: right">
               <h6
                 class="d-inline-block text-white text-uppercase bg-primary py-1 px-2">
-             פרטים
+                פרטים
               </h6>
-              <h1 class="mb-4"><i class="fa fa-map-marker-alt mr-2"></i>כתובת איריס 8 גן יבנה</h1>
+              <h1 class="mb-4">
+                <i class="fa fa-map-marker-alt mr-2"></i>כתובת איריס 8 גן יבנה
+              </h1>
               <ul class="list-inline">
-                <p  class="h6"><i class="fa fa-envelope mr-2"></i>ramatia89@gmail.com</p>
-                <p  class="h6"><i class="fa fa-phone mr-2"></i>+972 50-252-6605</p>
-                <p  class="h6"><i class="fa fa-home mr-2"></i>ח.פ 302945837</p>
+                <p class="h6">
+                  <i class="fa fa-envelope mr-2"></i>ramatia89@gmail.com
+                </p>
+                <p class="h6">
+                  <i class="fa fa-phone mr-2"></i>+972 50-252-6605
+                </p>
+                <p class="h6"><i class="fa fa-home mr-2"></i>ח.פ 302945837</p>
 
                 <li class="h6 py-1">
                   ימי ראשון 08:00-14:00
@@ -111,15 +121,12 @@
                   ימי שישי 08:00-13:00
                   <i class="far fa-circle text-primary mr-3"></i>
                 </li>
-
-           
-
               </ul>
               <a
-              class="btn btn-success py-3 px-4 mt-3 animate__animated animate__fadeInUp"
-              href="https://wa.me/972502526605">
-              <i class="fab fa-whatsapp"></i> WhatsApp</a
-            >
+                class="btn btn-success py-3 px-4 mt-3 animate__animated animate__fadeInUp"
+                href="https://wa.me/972502526605">
+                <i class="fab fa-whatsapp"></i> WhatsApp</a
+              >
             </div>
           </div>
         </div>
@@ -151,5 +158,9 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/accessibility.js"></script>
+    <script type="module">
+      import { trackPageView } from "./js/firebase_config.js";
+      trackPageView();
+    </script>
   </body>
 </html>
