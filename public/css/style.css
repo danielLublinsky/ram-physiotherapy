@@ -71,7 +71,7 @@ body {
   line-height: 1.5;
   color: #757575;
   text-align: left;
-  background-color: #fff;
+  background-color: #fcfcfc;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -588,6 +588,9 @@ mark,
 .img-fluid {
   max-width: 100%;
   height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .img-thumbnail {
@@ -4301,6 +4304,7 @@ input[type="button"].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  border-bottom: var(--primary) solid 1px;
 }
 
 .navbar .container,
@@ -10092,7 +10096,7 @@ h6,
 
 .sub-service-title {
   font-size: 1.5rem;
-  color: #007bff; /* Adjust to your primary color */
+  color: var(--primary); /* Adjust to your primary color */
 }
 
 .sub-service-description {
