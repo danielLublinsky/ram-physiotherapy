@@ -71,7 +71,7 @@ body {
   line-height: 1.5;
   color: #757575;
   text-align: left;
-  background-color: #fcfcfc;
+  background-color: #fafafb;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -591,6 +591,11 @@ mark,
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+}
+
+.img-fluid-basic {
+  max-width: 100%;
+  height: auto;
 }
 
 .img-thumbnail {
