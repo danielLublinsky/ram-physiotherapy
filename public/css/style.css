@@ -4342,7 +4342,6 @@ input[type="button"].btn-block {
 .navbar-nav {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
   margin-bottom: 0;
   list-style: none;
 }
@@ -4350,6 +4349,15 @@ input[type="button"].btn-block {
 .navbar-nav .nav-link {
   padding-right: 0;
   padding-left: 0;
+  font-size: 25px;
+  padding: 15px;
+  text-align: center;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-sep {
+    border-bottom: 1px solid #ccc;
+  }
 }
 
 .navbar-nav .dropdown-menu {
